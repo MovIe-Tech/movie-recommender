@@ -64,7 +64,7 @@ def save_model(data_path, stopwords_path, model_path):
     model = Doc2Vec(documents=trainings, dm=1, vector_size=200, alpha=0.025, min_count=1)
     model.save(model_path)
 
-def preprocess(text, stopwords_path='../data/stopwords.csv'):
+def preprocess(text, stopwords_path='data/stopwords.csv'):
     splitted_reviews = analysis(text).split(' ')
     stopwords = pd.read_csv(stopwords_path, encoding='utf-8').T.values.tolist()[0]
     return [word for word in splitted_reviews if word not in stopwords]
