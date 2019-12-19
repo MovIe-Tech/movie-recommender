@@ -1,6 +1,6 @@
 {% extends "template.html" %}
 {% block content %}
-<form action="http://www.movietech.shop/movie-recommender/search" method="POST">
+<form action="{{ url_for('search') }}" method="POST">
     <label for="statement">入力</label>
     <textarea name="statement" id="statement"></textarea>
     <button type="submit">検索</button>
