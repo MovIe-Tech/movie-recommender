@@ -62,8 +62,8 @@ def preprocess_reviews(data_path, stopwords_path):
     return words_list, titles_list
 
 
-# ストップワードを用い、テキストを単語のリストにする
-def preprocess_TextToList(text, stopwords_path='../data/stopwords.csv'):
+# ストップワードを用い、テキストを単語のリストにする, 入力に利用
+def preprocess_TextToList(text, stopwords_path='data/stopwords.csv'):
     splitted_reviews = analysis(text).split(' ')
     stopwords = pd.read_csv(stopwords_path, encoding='utf-8').T.values.tolist()[0]
     return [word for word in splitted_reviews if word not in stopwords]
