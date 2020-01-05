@@ -16,7 +16,7 @@ def save_model(words_list, titles_list, model_path):
     model.save(model_path)
     
 # Doc2Vecにより類似度のnumpyリストを出力
-def predict_movies(input_list, topn=1005, model_path='data/doc2vec1005id.model', stopwords_path='data/stopwords.csv'):
+def predict_movies(input_list, topn=1005, model_path='data/doc2vec1005id.model'):
     model = Doc2Vec.load(model_path)
     vec = model.infer_vector(input_list)
     array = np.array(model.docvecs.most_similar([vec], topn=topn))
