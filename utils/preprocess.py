@@ -62,7 +62,37 @@ def preprocess_reviews(data_path, stopwords_path):
     return words_list, titles_list
 
 
+<<<<<<< HEAD
 # ストップワードを用い、テキストを単語のリストにする
+=======
+# 作品ごとの単語のリスト, 作品タイトルのリスト, idのリストを出力
+# レビューの長さを調整：デフォルトは100文字未満の映画を削除、3000字目以降の文字を削除
+def preprocess_reviews_length(data_path, stopwords_path, lower=100, upper=3000):
+    ## csvの読み込み
+    df = pd.read_csv(data_path, encoding='utf-8', dtype={'Rating Score':'float'})
+    df = df.dropna(axis=0, how='all', subset=['reviews'])
+    ## lists of reviews and titles
+    reviews_list = df['reviews'].T.tolist()
+    ## stopword
+    stopwords_df = pd.read_csv(stopwords_path, encoding='utf-8')
+    stopwords_list = stopwords_df.T.values.tolist()[0]
+    ## make training data
+    splitted_reviews = [analysis(reviews).split(' ') for i, reviews in enumerate(reviews_list)]
+    words_list = []
+    for i in range(len(splitted_reviews)):
+        words_list.append([word for word in splitted_reviews[i] if word not in stopwords_list][:upper])
+    df['reviews'] = words_list
+    for index, row in df.iterrows():
+        df.at[index, 'len'] = len(row['reviews'])
+    df = df[df['len'] >= lower]
+    words_list = df['reviews'].T.tolist()
+    titles_list = df['title'].T.tolist()
+    id_list = df['id'].T.tolist()
+    return words_list, titles_list, id_list
+
+
+# ストップワードを用い、テキストを単語のリストにする, 入力に利用
+>>>>>>> 5caffc28b9425a885b05a7968940ea353e215046
 def preprocess_TextToList(text, stopwords_path='data/stopwords.csv'):
     splitted_reviews = analysis(text).split(' ')
     stopwords = pd.read_csv(stopwords_path, encoding='utf-8').T.values.tolist()[0]
