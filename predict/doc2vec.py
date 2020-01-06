@@ -5,8 +5,9 @@ import sys
 #!pip install googletrans
 from gensim.models.doc2vec import Doc2Vec
 from gensim.models.doc2vec import TaggedDocument
+from utils.preprocess import preprocess_TextToList
 
-
+    
 # Doc2Vecのモデルを保存
 def save_model(words_list, titles_list, model_path):
     trainings = [TaggedDocument(words = words ,tags = [titles_list[i]]) for i, words in enumerate(words_list)]
