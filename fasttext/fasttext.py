@@ -6,7 +6,6 @@ import MeCab
 import fasttext
 #!pip install gensim
 from gensim.models.wrappers.fasttext import FastText
-import time
 import datetime
 
 #fasttext用文書前処理
@@ -41,12 +40,3 @@ def predict(data_path, model_path, word, k):
     result = model.predict(word, k)
     for i in range(min([k, len(result[0])])):
         print(result[0][i].replace("__label__" , "").replace("," , "") + " : " + str(result[1][i]))
-
-
-'''
-使用例
-
-myFastText('data/1005data.csv', 'data/stopwords.csv', 'data/model')
-predict('data/1005data.csv', 'data/model', "冒険", 20)
-
-'''
