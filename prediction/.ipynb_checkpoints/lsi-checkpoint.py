@@ -14,7 +14,7 @@ from gensim.similarities.docsim import MatrixSimilarity
 # コーパスと辞書を保存
 def save_model(words_list, titles_list, corpus_path='data/corpus.txt', dic_path='data/dic.dict'):
     dic = Dictionary(words_list)
-    dic.filter_extremes(no_below=2, no_above=0.2)
+    #dic.filter_extremes(no_below=2, no_above=0.2)
     corpus = [dic.doc2bow(w) for w in words_list]
     f = open(corpus_path, 'wb')
     pickle.dump(corpus, f)
