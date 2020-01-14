@@ -26,7 +26,7 @@ def clean(word_list) -> list:
     stws = pd.read_csv("./data/stopwords.csv", encoding='utf-8').T.values.tolist()[0]
     return [word for word in word_list if word not in stws]
 
-conn = sqlite3.connect("/Users/zmn/Documents/mit/movie-recommender/query_expansion/wnjpn.db")
+conn = sqlite3.connect("./prediction/wnjpn.db")
 
 # 英語文字があるかを判断する関数
 def __isLetter(word) -> bool:
@@ -86,6 +86,7 @@ def expansion_magic(query, rate) -> list:
                 synset.remove(synset[random_index])
         querys.append(similar_word_list)
     
-    return querys
+    
+    return list(np.array(querys).flatten())
 
-pprint(expansion_magic("母は泣いた", 20))
+# pprint(expansion_magic("面白いホラー映画", 9))
