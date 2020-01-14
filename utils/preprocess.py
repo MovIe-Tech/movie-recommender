@@ -86,7 +86,8 @@ def preprocess_reviews_length(data_path, stopwords_path, lower=100, upper=3000):
     words_list = df['reviews'].T.tolist()
     titles_list = df['title'].T.tolist()
     id_list = df['id'].T.tolist()
-    return words_list, titles_list, id_list
+    rate_list = df['rate'].T.tolist()
+    return words_list, titles_list, id_list, rate_list
 
 
 # ストップワードを用い、テキストを単語のリストにする, 入力に利用
