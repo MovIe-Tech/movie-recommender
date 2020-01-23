@@ -128,6 +128,6 @@ def get_reviews(urls, synopsis=False, revwNum=10):
     
     return movies
 
-urls = get_urls(74, 76)
-data = get_reviews(urls, synopsis=False, revwNum=20)
-data.to_csv('data10.csv')
+urls = get_urls(81, 83)
+data = get_reviews(urls, synopsis=True, revwNum=17)
+data.to_csv('data_2.csv')

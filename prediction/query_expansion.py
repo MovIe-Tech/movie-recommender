@@ -85,8 +85,5 @@ def expansion_magic(query, rate) -> list:
                 similar_word_list.append(synset[random_index])
                 synset.remove(synset[random_index])
         querys.append(similar_word_list)
-    
-    
     return list(np.array(querys).flatten())
 
-# pprint(expansion_magic("面白いホラー映画", 9))

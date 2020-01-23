@@ -4,11 +4,14 @@ import pandas as pd
 from utils.preprocess import preprocess_TextToList
 from prediction import lsi
 from prediction import doc2vec
+from prediction import query_expansion
 
 
 args = sys.argv
 input_text = args[1]
 input_list = preprocess_TextToList(input_text)
+# input_list = query_expansion.expansion_magic(input_text)  # クエリ拡張機能の実装
+
 pred_list = lsi.predict_movies(input_list)
 titles_list = pd.read_csv("data/movie_titles.csv").values.tolist()
 sorted_id = np.argsort(pred_list)[::-1]
