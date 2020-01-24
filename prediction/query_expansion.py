@@ -6,7 +6,6 @@ import pandas as pd
 import sqlite3
 import string
 from random import randint
-from pprint import pprint
 from natto import MeCab
 import numpy as np
 
@@ -23,7 +22,7 @@ def txt2words(txt) -> list:
     return words
 
 def clean(word_list) -> list:
-    stws = pd.read_csv("./data/stopwords.csv", encoding='utf-8').T.values.tolist()[0]
+    stws = pd.read_csv("./data/stop_words_review.csv", encoding='utf-8').T.values.tolist()[0]
     return [word for word in word_list if word not in stws]
 
 conn = sqlite3.connect("./prediction/wnjpn.db")
@@ -86,4 +85,3 @@ def expansion_magic(query, rate) -> list:
                 synset.remove(synset[random_index])
         querys.append(similar_word_list)
     return list(np.array(querys).flatten())
-
