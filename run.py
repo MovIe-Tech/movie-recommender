@@ -13,12 +13,19 @@ def search_for_movies(query, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1,
     rate_list = pd.read_csv("data/movies_data.csv")['rate'].values.tolist()
 
     query_list = query_expansion.expansion_magic(query, 8)
+
+    # lsi
     review_pred = predict_movies(query_list, corpus_path='/data/lsiReviewCorpus.txt',
                        dic_path='/data/lsiReviewDic.dict', stopwords_path='/data/stop_words_review.csv')
    # review_pred = doc2vec.predict_movies(input_list = query_list, topn=1005, model_path='data/doc2vec_reviews.model')
-    syn_pred = predict_movies(query_list, corpus_path='/dada/lsiSynCorpus.txt', dic_path='/data/lsiSynDic.dict', 
+    syn_pred = predict_movies(query_list, corpus_path='/data/lsiSynCorpus.txt', dic_path='/data/lsiSynDic.dict',
                                  stopwords_path='/data/stop_words_synopsis.csv')
-    
+
+    # fasttext
+
+    review_pred += predict(model_path='/data/fasttext_review', query_list)
+    syn_pred    += predict(model_path='/data/fasttext_synopsis', query_list)
+
     pred_list = w_review * review_pred + w_syn * syn_pred
 
 #    review_pred = doc2vec.predict_movies(input_list = query_list, topn=1005, model_path='data/doc2vec_reviews.model')
