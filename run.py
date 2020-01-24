@@ -4,6 +4,7 @@ import pandas as pd
 from prediction import lsi
 from prediction import doc2vec
 from prediction import fasttext
+from prediction import TFIDF
 from utils.preprocess import preprocess_TextToList
 from prediction import query_expansion
 
@@ -23,6 +24,10 @@ def search_for_movies(query, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1,
 
     review_pred += fasttext.predict(model_path='data/fasttext_review', word_list=query_list)
     syn_pred    += fasttext.predict(model_path='data/fasttext_synopsis', word_list=query_list)
+    
+    # TFIDF
+    review_pred += TFIDF.TFIDF_pred_review(query = query_list, csv_path = '917datafin.csv')
+    review_pred += TFIDF.TFIDF_pred_synopsis(query = query_list, csv_path = '917datafin.csv')
 
     pred_list = w_review * review_pred + w_syn * syn_pred
 
