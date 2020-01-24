@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import sys
 import csv
-!pip install mecab-python3
+#!pip install mecab-python3
 import MeCab
 import fasttext
 #!pip install gensim
