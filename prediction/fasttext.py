@@ -36,7 +36,7 @@ def myFastText(data_path, stopwords_path, myFastText_path, title_path):
     # print(datetime.datetime.now())
 
 
-def predict(title_path, model_path, word_list, k=1005):
+def predict(model_path, word_list, k=1005):
 
     titles_list = pd.read_csv(title_path, encoding='utf-8')
     model = fasttext.load_model(model_path)
@@ -46,7 +46,6 @@ def predict(title_path, model_path, word_list, k=1005):
     for j in range(len(word_list)):
         for i in range(min([k, len(result[0][j])])):
             id = int(result[0][j][i].replace("__label__" , "").replace("," , ""))
-            # print(str(titles_list.loc[id][0]) + " : " + str(result[1][j][i]))
             score[id] += result[1][j][i]
 
     return score
