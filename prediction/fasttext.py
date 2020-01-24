@@ -38,7 +38,7 @@ def myFastText(data_path, stopwords_path, myFastText_path, title_path):
 
 def predict(model_path, word_list, k=1005):
 
-    titles_list = pd.read_csv(title_path, encoding='utf-8')
+    # titles_list = pd.read_csv(title_path, encoding='utf-8')
     model = fasttext.load_model(model_path)
     result = model.predict(word_list, k)
     ## result : [0:id 1:rate][j:word_list][i:ranking]
