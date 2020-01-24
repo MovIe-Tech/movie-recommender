@@ -27,7 +27,7 @@ def search_for_movies(query, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1,
     
     # TFIDF
     review_pred += TFIDF.TFIDF_pred_review(query = query_list, csv_path = '917datafin.csv')
-    review_pred += TFIDF.TFIDF_pred_synopsis(query = query_list, csv_path = '917datafin.csv')
+    syn_pred    += TFIDF.TFIDF_pred_synopsis(query = query_list, csv_path = '917datafin.csv')
 
     pred_list = w_review * review_pred + w_syn * syn_pred
 
