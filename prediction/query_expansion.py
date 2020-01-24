@@ -21,8 +21,8 @@ def txt2words(txt) -> list:
                 words.append(feature[6]) 
     return words
 
-def clean(word_list) -> list:
-    stws = pd.read_csv("./data/stop_words_review.csv", encoding='utf-8').T.values.tolist()[0]
+def clean(word_list, stopwords_path) -> list:
+    stws = pd.read_csv(stopwords_path, encoding='utf-8').T.values.tolist()[0]
     return [word for word in word_list if word not in stws]
 
 conn = sqlite3.connect("./prediction/wnjpn.db")
@@ -59,7 +59,7 @@ def __search_similar_words(word) -> list:
 
 
 
-def expansion_magic(query, rate) -> list:
+def expansion_magic(query, rate, stopwords_path) -> list:
     """This function expanses a query of string type to a list of sentenses
 
         param query: a query of string type
@@ -67,7 +67,7 @@ def expansion_magic(query, rate) -> list:
         return: a list of a rate quantity of queries words 
     """
     
-    word_list = clean(txt2words(query))
+    word_list = clean(txt2words(query), stopwords_path)
     querys = [word_list]
 
     synsets = []

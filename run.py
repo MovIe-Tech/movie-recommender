@@ -12,7 +12,7 @@ def search_for_movies(query, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1,
     title_list = pd.read_csv("data/movies.csv")['title'].values.tolist()
     rate_list = pd.read_csv("data/movies.csv")['rate'].values.tolist()
     # query_list = preprocess_TextToList(query, stopwords_path='data/stop_words_review.csv')
-    query_list = query_expansion.expansion_magic(query, 8)
+    query_list = query_expansion.expansion_magic(query, 8, stopwords_path='data/stop_words_review.csv')
     # lsi
     review_pred = lsi.predict_movies(query_list, corpus_path='data/lsiReviewCorpus.txt',
                        dic_path='data/lsiReviewDic.dict')
