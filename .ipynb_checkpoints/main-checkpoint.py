@@ -10,7 +10,8 @@ import run
 args = sys.argv
 input_text = args[1]
 
-titles, rates = run.search_for_movies(query=input_text, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1, w_r_l=1, w_r_t=1)
+# titles, rates = run.search_for_movies(query=input_text, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1, w_r_l=1, w_r_t=1)
+run.search_for_movies(query=input_text, topn=10, w_review = 1, w_syn = 1, w_r_d=1, w_r_f=1, w_r_l=1, w_r_t=1)
 # input_list = preprocess_TextToList(input_text)
 # input_list = query_expansion.expansion_magic(input_text, 5)  # クエリ拡張機能の実装、引数５は５倍拡張すると言う意味
 
@@ -24,5 +25,5 @@ titles, rates = run.search_for_movies(query=input_text, topn=10, w_review = 1, w
 # print(f"{titles_list[sorted_id[4]]} : {pred_list[sorted_id[4]]}")
 # print(lsi.predict_movies(input_list))
 # print(doc2vec.predict_movies(input_list, topn=2000, model_path='data/doc2vec1005id.model'))
-print(titles)
-print(rates)
+#print(titles)
+#print(rates)
